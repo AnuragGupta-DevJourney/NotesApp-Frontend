@@ -25,3 +25,7 @@ body{
   margin: 0 auto;
   padding-inline: 0.5rem;
 }
+input[type="checkbox" i] {
+  background-color: green !important;
+  border: 1px solid white !important;
+}
