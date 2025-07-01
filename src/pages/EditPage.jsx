@@ -6,9 +6,12 @@ import { RiDeleteBin5Fill } from "react-icons/ri";
 import { MdSaveAs } from "react-icons/md";
 import { data, Link, useNavigate, useParams } from "react-router-dom";
 import axiosBaseURL from "../util/axiosBaseURL";
+import Loader from "../components/Loader";
 
 function EditPage() {
+
   const { id } = useParams();
+  const [isLoading ,setIsLoading] = useState(true)
 
   const initilizeNotesDetails = {
     title: "",
@@ -53,10 +56,12 @@ function EditPage() {
       const response = await axiosBaseURL.get(`/notes/${id}`);
       const data = response.data.data;
       const { title, description } = data;
+      setIsLoading(false)
       setNotesDetails({
         title: title,
         description: description,
       });
+      
     } catch (error) {
       console.log("Failed to get the data", error);
     }
@@ -85,10 +90,10 @@ function EditPage() {
     }
   };
 
-  return (
+  return isLoading ? <Loader/> : (
     <div className="min-h-screen bg-black flex items-center  ">
       <div className="max-w-3xl flex-1 px-6 py-12 mx-auto bg-[#181212]">
-        <div>
+        <div className="flex justify-between items-center" >
           <Link
             to={"/"}
             className=" font-medium text-slate-400 flex justify-start gap-1.5 items-center"

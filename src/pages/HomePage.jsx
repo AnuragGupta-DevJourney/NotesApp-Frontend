@@ -63,7 +63,7 @@ function HomePage() {
 
       {isLoading && <Loader />}
 
-      <div className="flex gap-4 m-4 justify-evenly flex-wrap min-h-screen">
+      <div className="flex gap-4 m-4 justify-evenly flex-wrap items-center h-full ">
         {notesData.length === 0 && isRateLimitExceed === false ? (
           <NotesNotFound/>
         ) : (
